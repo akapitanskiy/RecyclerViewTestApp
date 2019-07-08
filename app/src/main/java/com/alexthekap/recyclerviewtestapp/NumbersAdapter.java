@@ -9,9 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ViewAnimator;
 
-import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 
 /**
  * @author Alexey Kapitanskiy
@@ -39,7 +38,7 @@ public class NumbersAdapter extends RecyclerView.Adapter<NumbersAdapter.NumberVi
         // родителя это за нас сделает RecyclerView
 
         NumberViewHolder numberViewHolder = new NumberViewHolder(view);
-        numberViewHolder.viewHolderIndex.setText("vh No: " + String.format("%2s", viewHolderCount));
+        numberViewHolder.viewHolderIndex.setText("viewHolder: " + String.format("%2s", viewHolderCount));
         viewHolderCount++;
         return numberViewHolder;
     }
@@ -56,12 +55,13 @@ public class NumbersAdapter extends RecyclerView.Adapter<NumbersAdapter.NumberVi
         return numberItems;
     }
 
-    class NumberViewHolder extends RecyclerView.ViewHolder {
 
+
+    class NumberViewHolder extends RecyclerView.ViewHolder {
         TextView listItemNumberView;
         TextView viewHolderIndex;
         ImageView viewHolderImage;
-        ViewAnimator anim;
+//        ViewAnimator anim;
 
         public NumberViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -69,7 +69,7 @@ public class NumbersAdapter extends RecyclerView.Adapter<NumbersAdapter.NumberVi
             listItemNumberView = itemView.findViewById(R.id.tv_number_item);
             viewHolderIndex = itemView.findViewById(R.id.tv_viewHolderNumber);
             viewHolderImage = itemView.findViewById(R.id.iv_viewHolderImage);
-            anim = itemView.findViewById(R.id.anim);
+//            anim = itemView.findViewById(R.id.anim);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -81,13 +81,23 @@ public class NumbersAdapter extends RecyclerView.Adapter<NumbersAdapter.NumberVi
         }
 
         void bind(int listIndex) {
-            listItemNumberView.setText(String.valueOf(listIndex));
-            Glide.with(parent)
-                    .load("https://media1.giphy.com/media/26AHrsRVKw5lDjRba/100.gif")
-                    .asGif()
-                    .error(R.drawable.baseline_camera_black_48dp_2)
-                    .crossFade().sizeMultiplier(0.2F)
+            listItemNumberView.setText("item: " + String.valueOf(listIndex));
+            Picasso.get()
+                    .load("https://media3.giphy.com/media/DVHrK100eH3J6/200_s.gif")
+                    .resize(180, 200)
+                    .centerCrop()
+//                    .placeholder(R.drawable.user_placeholder)
+//                    .error(R.drawable.user_placeholder_error)
                     .into(viewHolderImage);
+
+//            new GetURLImageTask(viewHolderImage).execute("https://media3.giphy.com/media/DVHrK100eH3J6/100_s.gif");
+
+//            Glide.with(parent)
+//                    .load("https://media3.giphy.com/media/DVHrK100eH3J6/100_s.gif")
+//                    .asGif()
+//                    .error(R.drawable.baseline_camera_black_48dp_2)
+//                    .crossFade().sizeMultiplier(0.2F)
+//                    .into(viewHolderImage);
         }
     }
 }

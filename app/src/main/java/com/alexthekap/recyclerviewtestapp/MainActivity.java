@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
         numbersList.setHasFixedSize(true); // этим мы сказали что заранее знаем размер нашего списка => повышается производительность
 
-        numbersAdapter = new NumbersAdapter(20, this);
+        numbersAdapter = new NumbersAdapter(40, this);
         numbersList.setAdapter(numbersAdapter);
     }
 }
