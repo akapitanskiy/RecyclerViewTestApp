@@ -10,7 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
+
 
 /**
  * @author Alexey Kapitanskiy
@@ -61,6 +62,8 @@ public class NumbersAdapter extends RecyclerView.Adapter<NumbersAdapter.NumberVi
         TextView listItemNumberView;
         TextView viewHolderIndex;
         ImageView viewHolderImage;
+//        WebView gifWebView;
+//        GifImageView gifImageView;
 //        ViewAnimator anim;
 
         public NumberViewHolder(@NonNull View itemView) {
@@ -69,6 +72,9 @@ public class NumbersAdapter extends RecyclerView.Adapter<NumbersAdapter.NumberVi
             listItemNumberView = itemView.findViewById(R.id.tv_number_item);
             viewHolderIndex = itemView.findViewById(R.id.tv_viewHolderNumber);
             viewHolderImage = itemView.findViewById(R.id.iv_viewHolderImage);
+//            gifImageView = itemView.findViewById(R.id.gifImageView);
+
+//            gifWebView = itemView.findViewById(R.id.webView_gif);
 //            anim = itemView.findViewById(R.id.anim);
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -82,22 +88,24 @@ public class NumbersAdapter extends RecyclerView.Adapter<NumbersAdapter.NumberVi
 
         void bind(int listIndex) {
             listItemNumberView.setText("item: " + String.valueOf(listIndex));
-            Picasso.get()
-                    .load("https://media3.giphy.com/media/DVHrK100eH3J6/200_s.gif")
-                    .resize(180, 200)
-                    .centerCrop()
-//                    .placeholder(R.drawable.user_placeholder)
-//                    .error(R.drawable.user_placeholder_error)
-                    .into(viewHolderImage);
+//            Picasso.get()
+//                    .load("https://media3.giphy.com/media/DVHrK100eH3J6/200.gif")
+////                    .resize(180, 200)
+////                    .centerCrop()
+////                    .placeholder(R.drawable.user_placeholder)
+////                    .error(R.drawable.user_placeholder_error)
+//                    .into(gifImageView);
 
 //            new GetURLImageTask(viewHolderImage).execute("https://media3.giphy.com/media/DVHrK100eH3J6/100_s.gif");
 
-//            Glide.with(parent)
-//                    .load("https://media3.giphy.com/media/DVHrK100eH3J6/100_s.gif")
-//                    .asGif()
-//                    .error(R.drawable.baseline_camera_black_48dp_2)
-//                    .crossFade().sizeMultiplier(0.2F)
-//                    .into(viewHolderImage);
+            Glide.with(parent)
+                    .load("https://media3.giphy.com/media/DVHrK100eH3J6/200.gif")
+                    .asGif()
+                    .error(R.drawable.baseline_camera_black_48dp_2)
+//                    .thumbnail(0.9f)
+                    .crossFade()
+//                    .sizeMultiplier(0.3F)
+                    .into(viewHolderImage);
         }
     }
 }
